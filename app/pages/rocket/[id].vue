@@ -20,11 +20,9 @@ export default {
 
 <script lang="ts" setup>
 const route = useRoute()
+
 var id: string = route.params.id as string
-id = id.replace(/-/g, ' ')
-
-console.log(id)
-
+id = id.replace(/_/g, ' ')
 const currentId = ref(id)
 
 const rockets = rocket.data().rockets.value
@@ -38,6 +36,8 @@ for (let i = 0; i < rockets.length; i++) {
 }
 
 console.log(currentRocket)
+
+const favorites = useFavorites()
 </script>
 
 <template>
@@ -79,12 +79,18 @@ console.log(currentRocket)
 						</div>
 					</div>
 
-					<p class="pb-10">
+					<p class="pb-10" @click="favorites.display">
 						{{ currentRocket.displayDescription }}
 					</p>
 				</div>
 
-				<v-btn class="text-none flex-grow-0" color="info" rounded="0" variant="flat">
+				<v-btn
+					class="text-none flex-grow-0"
+					color="info"
+					rounded="0"
+					variant="flat"
+					@click="favorites.add(route.params.id as string)"
+				>
 					<span class="">Favorite</span>
 				</v-btn>
 			</v-col>

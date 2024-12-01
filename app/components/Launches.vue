@@ -21,7 +21,7 @@ export default {
 		},
 
 		dash(value: string) {
-			return value.replace(/\s/g, '-')
+			return value.replace(/\s/g, '_')
 		},
 	},
 }
@@ -65,7 +65,7 @@ const { xs, mdAndUp } = useDisplay()
 						<td class="">
 							<v-hover v-slot:default="{ isHovering, props }">
 								<a
-									:href="'/rocket-' + dash(item.rocket.rocket_name)"
+									:href="'/rocket/' + dash(item.rocket.rocket_name)"
 									class="text-decoration-none"
 								>
 									<button
