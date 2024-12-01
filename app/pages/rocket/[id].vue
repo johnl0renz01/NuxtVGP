@@ -25,14 +25,15 @@ var id: string = route.params.id as string
 id = id.replace(/_/g, ' ')
 const currentId = ref(id)
 
-const rockets = rocketData.data().rockets.value
+const rockets = ref(rocketData.data().rockets.value)
+console.log(rockets)
 var rocketsIndex: number = 0
 
 const currentRocket = useDetails()
 
-for (let i = 0; i < rockets.length; i++) {
-	if (rockets[i]?.name.toLowerCase() == currentId.value.toLowerCase()) {
-		currentRocket.set(rockets[i])
+for (let i = 0; i < rockets.value.length; i++) {
+	if (rockets.value[i]?.name.toLowerCase() == currentId.value.toLowerCase()) {
+		currentRocket.set(rockets.value[i])
 		rocketsIndex = i
 		break
 	}
@@ -59,15 +60,15 @@ const favorites = useFavorites()
 
 			<v-col cols="12" lg="7" class="d-flex flex-column">
 				<div class="flex-grow-1">
-					<h1 class="text-md-h3 font-weight-bold">
+					<h1 class="text-md-h4 font-weight-bold">
 						{{ currentRocket.displayName }}
 					</h1>
 
-					<span class="me-1 text-subtitle-2 text-grey-lighten-1">
+					<p class="my-2 text-xs-subtitle-2 text-grey-lighten-1">
 						First Flight: {{ currentRocket.displayFirstFlight }}
-					</span>
+					</p>
 
-					<div class="my-4">
+					<div class="my-5">
 						<div class="my-2">
 							Height:
 							<v-chip class="mr-2" label>{{ currentRocket.displayHeightF }} ft.</v-chip>

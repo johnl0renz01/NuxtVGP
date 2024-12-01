@@ -10,37 +10,10 @@ export default {
 	mixins: [sortData],
 	loading: true,
 	methods: {
-		truncate(value: string, length: number) {
-			if (value === null) {
-				return value
-			}
-
-			if (value.length > length) {
-				return value.substring(0, length) + '...'
-			} else {
-				return value
-			}
-		},
-
-		dash(value: string) {
+		underscore(value: string) {
 			return value.replace(/\s/g, '_')
 		},
 	},
-}
-
-const showFullDescription = ref(false)
-
-const toggleFullDescription = () => {
-	showFullDescription.value = !showFullDescription.value
-}
-const truncatedDescription = (details: string) => {
-	if (details == null) {
-		return details
-	}
-	if (!showFullDescription.value && details.length > 100) {
-		details = details.substring(0, 100) + '...'
-	}
-	return details
 }
 </script>
 
@@ -81,7 +54,7 @@ const { xs, mdAndUp } = useDisplay()
 						<td class="">
 							<v-hover v-slot:default="{ isHovering, props }">
 								<NuxtLink
-									:to="'/rocket/' + dash(item.rocket.rocket_name)"
+									:to="'/rocket/' + underscore(item.rocket.rocket_name)"
 									class="text-decoration-none"
 								>
 									<button
