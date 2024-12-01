@@ -1,12 +1,23 @@
+<style>
+html {
+	overflow-y: auto;
+}
+</style>
+
 <template>
 	<v-app>
-		<v-main>
+		<NavDrawer v-if="lgAndUp" />
+		<v-main class="d-flex flex-column">
+			<Navbar />
 			<slot />
+			<Footer />
 		</v-main>
 	</v-app>
 </template>
-<script>
-export default {
-	name: 'DefaultLayout',
-}
+
+<script setup>
+import { useDisplay } from 'vuetify'
+import Favorites from '~/pages/favorites.vue'
+import Rocketinfo from '~/pages/favorites.vue'
+const { xs, mdAndUp, lgAndUp } = useDisplay()
 </script>
