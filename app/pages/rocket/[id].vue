@@ -25,15 +25,14 @@ var id: string = route.params.id as string
 id = id.replace(/_/g, ' ')
 const currentId = ref(id)
 
-const rockets = ref(rocketData.data().rockets.value)
-console.log(rockets)
+const rockets = rocketData.data().rockets.value
 var rocketsIndex: number = 0
 
 const currentRocket = useDetails()
 
-for (let i = 0; i < rockets.value.length; i++) {
-	if (rockets.value[i]?.name.toLowerCase() == currentId.value.toLowerCase()) {
-		currentRocket.set(rockets.value[i])
+for (let i = 0; i < rockets.length; i++) {
+	if (rockets[i]?.name.toLowerCase() == currentId.value.toLowerCase()) {
+		currentRocket.set(rockets[i])
 		rocketsIndex = i
 		break
 	}
@@ -43,7 +42,7 @@ const favorites = useFavorites()
 </script>
 
 <template>
-	<v-container class="d-grid pb-16 h-100">
+	<main class="pb-16 pa-10 h-100">
 		<v-breadcrumbs :items="breadcrumbs" :to="breadcrumbs.to">
 			<template v-slot:divider>
 				<v-icon icon="mdi-chevron-right" class="mb-1"></v-icon>
@@ -108,5 +107,5 @@ const favorites = useFavorites()
 				</v-btn>
 			</v-col>
 		</v-row>
-	</v-container>
+	</main>
 </template>

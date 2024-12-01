@@ -7,7 +7,7 @@ for (let i = 2024; i >= 2000; i--) {
 }
 
 export default {
-	mixins: [sortData],
+	mixins: [sortData, rocketData],
 	loading: true,
 	methods: {
 		underscore(value: string) {

@@ -1,5 +1,5 @@
 <template>
-	<v-container class="d-grid h-100">
+	<main class="pa-10 h-100">
 		<v-row v-if="rockets.length > 0">
 			<v-col
 				cols="12"
@@ -89,7 +89,7 @@
 				</v-col>
 			</v-row>
 		</v-container>
-	</v-container>
+	</main>
 </template>
 
 <script lang="ts" setup>
