@@ -1,4 +1,6 @@
 <script lang="ts">
+import Details from './Details.vue'
+
 let years: string[] = []
 for (let i = 2024; i >= 2000; i--) {
 	years.push(i.toString())
@@ -24,6 +26,21 @@ export default {
 			return value.replace(/\s/g, '_')
 		},
 	},
+}
+
+const showFullDescription = ref(false)
+
+const toggleFullDescription = () => {
+	showFullDescription.value = !showFullDescription.value
+}
+const truncatedDescription = (details: string) => {
+	if (details == null) {
+		return details
+	}
+	if (!showFullDescription.value && details.length > 100) {
+		details = details.substring(0, 100) + '...'
+	}
+	return details
 }
 </script>
 
@@ -60,7 +77,7 @@ const { xs, mdAndUp } = useDisplay()
 			</template>
 			<template v-slot:item="{ item }">
 				<v-hover v-slot:default="{ isHovering, props }">
-					<tr :class="isHovering ? 'bg-blue' : ''" v-bind="props">
+					<tr :class="isHovering ? 'bg-blue-darken-4' : ''" v-bind="props">
 						<td class="">
 							<v-hover v-slot:default="{ isHovering, props }">
 								<NuxtLink
@@ -84,12 +101,7 @@ const { xs, mdAndUp } = useDisplay()
 						<td class="">{{ convertIsoToDateTime(item.launch_date_utc) }}</td>
 						<td class="">{{ item.launch_site }}</td>
 
-						<td class="text-wrap">
-							{{ truncate(item.details, 100) }}
-							<span class="text-decoration-underline cursor-pointer">
-								{{ item.details != null && item.details.length > 100 ? 'Show More' : '' }}
-							</span>
-						</td>
+						<Details :details="{ description: item.details }" />
 					</tr>
 				</v-hover>
 			</template>

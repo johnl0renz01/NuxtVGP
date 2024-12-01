@@ -9,12 +9,7 @@
 				class="pa-16"
 				justify=""
 			>
-				<v-card
-					:disabled="loading"
-					:loading="loading"
-					class="mx-auto h-100 d-flex flex-column"
-					max-width="100%"
-				>
+				<v-card class="mx-auto h-100 d-flex flex-column" max-width="100%">
 					<template v-slot:loader="{ isActive }">
 						<v-progress-linear
 							:active="isActive"

@@ -49,7 +49,7 @@ const favorites = useFavorites()
 			</template>
 		</v-breadcrumbs>
 		<v-row class="px-4 py-lg-4">
-			<v-col cols="12" md="5">
+			<v-col cols="12" lg="5">
 				<v-img
 					class=""
 					src="https://www.ft.com/__origami/service/image/v2/images/raw/ftcms%3Ae4cd9435-eb63-49dc-a1a7-4013e4f7d0bb?source=next-article&fit=scale-down&quality=highest&width=1440&dpr=1"
@@ -57,9 +57,9 @@ const favorites = useFavorites()
 				></v-img>
 			</v-col>
 
-			<v-col cols="12" md="7" class="d-flex flex-column">
+			<v-col cols="12" lg="7" class="d-flex flex-column">
 				<div class="flex-grow-1">
-					<h1>
+					<h1 class="text-md-h3 font-weight-bold">
 						{{ currentRocket.displayName }}
 					</h1>
 
@@ -87,7 +87,11 @@ const favorites = useFavorites()
 
 				<v-btn
 					class="text-none flex-grow-0"
-					:color="favorites.favorite.includes(route.params.id as string) ? 'background' : 'info'"
+					:color="
+						favorites.favorite.includes(route.params.id as string)
+							? 'background'
+							: 'blue-darken-4'
+					"
 					:disabled="favorites.favorite.includes(route.params.id as string) ? true : false"
 					rounded="0"
 					variant="flat"
