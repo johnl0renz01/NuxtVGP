@@ -6,27 +6,20 @@ for (let i = 2024; i >= 2000; i--) {
 
 export default {
 	mixins: [sort],
+	methods: {
+		truncate(value: string, length: number) {
+			if (value === null) {
+				return value
+			}
 
-	data: () => ({
-		years,
-	}),
+			if (value.length > length) {
+				return value.substring(0, length) + '...'
+			} else {
+				return value
+			}
+		},
+	},
 }
-
-/*
-
-<td class="text-wrap text-right">
-							<v-hover v-slot:default="{ isHovering, props }">
-								<v-btn
-									rounded="lg"
-									class="text-subtitle-2"
-									:class="isHovering ? 'bg-white' : 'bg-grey-darken-2'"
-									v-bind="props"
-								>
-									Details
-								</v-btn>
-							</v-hover>
-						</td>
-*/
 </script>
 
 <script lang="ts" setup>
@@ -40,7 +33,7 @@ const { xs, mdAndUp } = useDisplay()
 			class="ma-3"
 			:class="mdAndUp ? 'w-25' : 'w-100'"
 			clearable
-			label="Filter Year"
+			label="Filter Launch Year"
 			:items="years"
 			v-model="search"
 		></v-select>
@@ -62,7 +55,12 @@ const { xs, mdAndUp } = useDisplay()
 						<td class="">{{ item.launch_date_utc }}</td>
 						<td class="">{{ item.launch_site }}</td>
 						<td class="">{{ item.rocket.rocket_name }}</td>
-						<td class="text-wrap">{{ item.details }}</td>
+						<td class="text-wrap">
+							{{ truncate(item.details, 100) }}
+							<span class="text-decoration-underline cursor-pointer">
+								{{ item.details != null && item.details.length > 100 ? 'Show More' : '' }}
+							</span>
+						</td>
 					</tr>
 				</v-hover>
 			</template>

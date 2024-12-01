@@ -4,11 +4,11 @@ export default {
 		return {
 			search: '',
 			headers: [
-				{ key: 'mission_name', title: 'Mission Name' },
-				{ key: 'launch_date_utc', title: 'Launch Date' },
-				{ key: 'launch_site', title: 'Launch Site' },
-				{ key: 'rocket.rocket_name', title: 'Rocket Name' },
-				{ key: 'details', title: 'Details' },
+				{ key: 'mission_name', title: 'Mission Name', filterable: false },
+				{ key: 'launch_date_utc', title: 'Launch Date', filterable: true },
+				{ key: 'launch_site', title: 'Launch Site', filterable: false },
+				{ key: 'rocket.rocket_name', title: 'Rocket Name', filterable: false },
+				{ key: 'details', title: 'Details', filterable: false, sortable: false },
 			],
 			launch,
 		}

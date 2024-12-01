@@ -1,5 +1,5 @@
 <template>
-	<v-container class="d-grid">
+	<v-container class="d-grid h-100">
 		<v-row>
 			<v-col cols="6" v-for="rocket in rockets" :key="rocket.name" class="pa-16" justify="">
 				<v-card
@@ -87,7 +87,6 @@ export default {
 	methods: {
 		reserve() {
 			this.loading = true
-
 			setTimeout(() => (this.loading = false), 2000)
 		},
 	},

@@ -1,3 +1,3 @@
 <template>
-	<Table />
+	<Launches />
 </template>

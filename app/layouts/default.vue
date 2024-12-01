@@ -8,9 +8,9 @@ html {
 	<v-app>
 		<NavDrawer v-if="lgAndUp" />
 		<v-main class="d-flex flex-column">
-			<Navbar />
-			<slot />
-			<Footer />
+			<Navbar class="flex-grow-0" />
+			<slot class="flex-grow-1" />
+			<Footer class="flex-grow-0" />
 		</v-main>
 	</v-app>
 </template>
