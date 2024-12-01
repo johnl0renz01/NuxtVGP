@@ -1,9 +1,10 @@
 <script lang="ts">
 export default {
+	mixins: [rocket],
 	data: () => ({
 		breadcrumbs: [
 			{
-				title: 'Dashboard',
+				title: 'Launches',
 				disabled: false,
 				to: '/',
 			},
@@ -26,52 +27,17 @@ console.log(id)
 
 const currentId = ref(id)
 
-const query = gql`
-	query getRockets {
-		rockets {
-			name
-			description
-			first_flight
-			height {
-				meters
-				feet
-			}
-			mass {
-				kg
-				lb
-			}
-			stages
-		}
-	}
-`
-const { data } = useAsyncQuery<{
-	rockets: {
-		name: string
-		description: string
-		first_flight: string
-		height: {
-			meters: number
-			feet: number
-		}
-		mass: {
-			kg: number
-			lb: number
-		}
-		stages: number
-	}[]
-}>(query)
-const rockets = computed(() => data.value?.rockets ?? [])
+const rockets = rocket.data().rockets.value
+const currentRocket = useDetails()
 
-const rocket = useDetails()
-
-for (let i = 0; i < rockets.value.length; i++) {
-	if (rockets.value[i]?.name == currentId.value) {
-		rocket.set(rockets.value[i])
+for (let i = 0; i < rockets.length; i++) {
+	if (rockets[i]?.name == currentId.value) {
+		currentRocket.set(rockets[i])
 		break
 	}
 }
 
-console.log(rocket)
+console.log(currentRocket)
 </script>
 
 <template>
@@ -93,28 +59,28 @@ console.log(rocket)
 			<v-col cols="12" md="7" class="d-flex flex-column">
 				<div class="flex-grow-1">
 					<h1>
-						{{ rocket.displayName }}
+						{{ currentRocket.displayName }}
 					</h1>
 
 					<span class="me-1 text-subtitle-2 text-grey-lighten-1">
-						First Flight: {{ rocket.displayFirstFlight }}
+						First Flight: {{ currentRocket.displayFirstFlight }}
 					</span>
 
 					<div class="my-4">
 						<div class="my-2">
 							Height:
-							<v-chip class="mr-2" label>{{ rocket.displayHeightF }} ft.</v-chip>
-							<v-chip class="mr-2" label>{{ rocket.displayHeightM }} m.</v-chip>
+							<v-chip class="mr-2" label>{{ currentRocket.displayHeightF }} ft.</v-chip>
+							<v-chip class="mr-2" label>{{ currentRocket.displayHeightM }} m.</v-chip>
 						</div>
 						<div class="my-2">
 							Mass:
-							<v-chip class="mr-2" label>{{ rocket.displayMassK }} kg.</v-chip>
-							<v-chip class="mr-2" label>{{ rocket.displayMassL }} lb.</v-chip>
+							<v-chip class="mr-2" label>{{ currentRocket.displayMassK }} kg.</v-chip>
+							<v-chip class="mr-2" label>{{ currentRocket.displayMassL }} lb.</v-chip>
 						</div>
 					</div>
 
 					<p class="pb-10">
-						{{ rocket.displayDescription }}
+						{{ currentRocket.displayDescription }}
 					</p>
 				</div>
 

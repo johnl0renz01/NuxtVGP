@@ -77,6 +77,7 @@
 
 <script lang="ts">
 export default {
+	mixins: [rocket],
 	data: () => ({
 		loading: false,
 		selection: 1,
@@ -92,41 +93,5 @@ export default {
 </script>
 
 <script lang="ts" setup>
-const store = useCounter()
-const selection = ref(0)
-const query = gql`
-	query getRockets {
-		rockets {
-			name
-			description
-			first_flight
-			height {
-				meters
-				feet
-			}
-			mass {
-				kg
-				lb
-			}
-			stages
-		}
-	}
-`
-const { data } = useAsyncQuery<{
-	rockets: {
-		name: string
-		description: string
-		first_flight: string
-		height: {
-			meters: number
-			feet: number
-		}
-		mass: {
-			kg: number
-			lb: number
-		}
-		stages: number
-	}[]
-}>(query)
-const rockets = computed(() => data.value?.rockets ?? [])
+const rockets = rocket.data().rockets.value
 </script>

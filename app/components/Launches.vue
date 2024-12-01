@@ -6,6 +6,7 @@ for (let i = 2024; i >= 2000; i--) {
 
 export default {
 	mixins: [sort],
+	loading: true,
 	methods: {
 		truncate(value: string, length: number) {
 			if (value === null) {
@@ -33,6 +34,7 @@ const { xs, mdAndUp } = useDisplay()
 
 <template>
 	<v-card flat>
+		<button @click="onClick">asdada</button>
 		<v-select
 			class="ma-3"
 			:class="mdAndUp ? 'w-25' : 'w-100'"
@@ -52,7 +54,11 @@ const { xs, mdAndUp } = useDisplay()
 			fixed-footer
 			v-model="selected"
 			:items-per-page="-1"
+			:loading="loading"
 		>
+			<template v-slot:loading>
+				<v-skeleton-loader type="table-row@10"></v-skeleton-loader>
+			</template>
 			<template v-slot:item="{ item }">
 				<v-hover v-slot:default="{ isHovering, props }">
 					<tr :class="isHovering ? 'bg-blue' : ''" v-bind="props">
