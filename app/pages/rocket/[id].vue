@@ -1,6 +1,6 @@
 <script lang="ts">
 export default {
-	mixins: [rocket],
+	mixins: [rocketData],
 	data: () => ({
 		breadcrumbs: [
 			{
@@ -25,7 +25,7 @@ var id: string = route.params.id as string
 id = id.replace(/_/g, ' ')
 const currentId = ref(id)
 
-const rockets = rocket.data().rockets.value
+const rockets = rocketData.data().rockets.value
 var rocketsIndex: number = 0
 
 const currentRocket = useDetails()
@@ -37,8 +37,6 @@ for (let i = 0; i < rockets.length; i++) {
 		break
 	}
 }
-
-console.log(currentRocket)
 
 const favorites = useFavorites()
 </script>

@@ -97,12 +97,6 @@
 	</v-container>
 </template>
 
-<script lang="ts">
-export default {
-	mixins: [rocket],
-}
-</script>
-
 <script lang="ts" setup>
 const favorites = useFavorites()
 const rockets = favorites.favoritesObject

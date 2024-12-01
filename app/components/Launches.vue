@@ -5,7 +5,7 @@ for (let i = 2024; i >= 2000; i--) {
 }
 
 export default {
-	mixins: [sort],
+	mixins: [sortData],
 	loading: true,
 	methods: {
 		truncate(value: string, length: number) {
@@ -24,22 +24,6 @@ export default {
 			return value.replace(/\s/g, '_')
 		},
 	},
-}
-
-function convertIsoToDateTime(isoString: string): string {
-	const date = new Date(isoString)
-
-	const options: Intl.DateTimeFormatOptions = {
-		year: 'numeric',
-		month: 'long',
-		day: 'numeric',
-		hour: 'numeric',
-		minute: 'numeric',
-		second: 'numeric',
-		timeZoneName: 'short',
-	}
-
-	return date.toLocaleString(undefined, options)
 }
 </script>
 
@@ -96,8 +80,8 @@ const { xs, mdAndUp } = useDisplay()
 						<td class="">
 							{{ item.rocket.rocket_name }}
 						</td>
-						<td class="w-25">{{ item.mission_name }}</td>
-						<td class="">{{ item.launch_date_utc }}</td>
+						<td class="">{{ item.mission_name }}</td>
+						<td class="">{{ convertIsoToDateTime(item.launch_date_utc) }}</td>
 						<td class="">{{ item.launch_site }}</td>
 
 						<td class="text-wrap">

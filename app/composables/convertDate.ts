@@ -1,41 +1,14 @@
-export default {
-	data() {
-		const query = gql`
-			query getLaunches {
-				launches {
-					mission_name
-					launch_date_utc
-					launch_site {
-						site_name
-					}
-					rocket {
-						rocket_name
-					}
-					details
-					launch_year
-				}
-			}
-		`
+export function convertIsoToDateTime(isoString: string): string {
+	const date = new Date(isoString)
 
-		const { data } = useAsyncQuery<{
-			launches: {
-				mission_name: string
-				launch_date_utc: string
-				launch_site: {
-					site_name: string
-				}
-				rocket: {
-					rocket_name: string
-				}
-				details: string
-				launch_year: string
-			}[]
-		}>(query)
-
-		const launches = computed(() => data.value?.launches ?? [])
-
-		return {
-			launches,
-		}
-	},
+	const options: Intl.DateTimeFormatOptions = {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric',
+		hour: 'numeric',
+		minute: 'numeric',
+		second: 'numeric',
+		timeZoneName: 'short',
+	}
+	return date.toLocaleString(undefined, options)
 }
