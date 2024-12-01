@@ -1,7 +1,7 @@
 <template>
 	<v-container class="d-grid h-100">
 		<v-row>
-			<v-col cols="6" v-for="rocket in rockets" :key="rocket.name" class="pa-16" justify="">
+			<v-col cols="12" md="6" v-for="rocket in rockets" :key="rocket.name" class="pa-16" justify="">
 				<v-card
 					:disabled="loading"
 					:loading="loading"
@@ -40,9 +40,7 @@
 										<v-chip class="mr-2" label>{{ rocket.height.feet }} ft.</v-chip>
 										<v-chip class="mr-2" label>{{ rocket.height.meters }} m.</v-chip>
 									</div>
-								</v-col>
-								<v-col>
-									<div class="">
+									<div class="my-2">
 										Mass:
 										<v-chip class="mr-2" label>{{ rocket.mass.kg }} kg.</v-chip>
 										<v-chip class="mr-2" label>{{ rocket.mass.lb }} lb.</v-chip>
@@ -63,7 +61,7 @@
 							<v-card-actions>
 								<v-btn
 									color="deep-purple-lighten-2 font-weight-bold"
-									text="Favorite"
+									text="Remove"
 									block
 									border
 									@click="reserve"

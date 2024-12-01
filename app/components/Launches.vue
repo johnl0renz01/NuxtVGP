@@ -18,6 +18,10 @@ export default {
 				return value
 			}
 		},
+
+		dash(value: string) {
+			return value.replace(/\s/g, '-')
+		},
 	},
 }
 </script>
@@ -47,14 +51,34 @@ const { xs, mdAndUp } = useDisplay()
 			fixed-header
 			fixed-footer
 			v-model="selected"
+			:items-per-page="-1"
 		>
 			<template v-slot:item="{ item }">
 				<v-hover v-slot:default="{ isHovering, props }">
 					<tr :class="isHovering ? 'bg-blue' : ''" v-bind="props">
+						<td class="">
+							<v-hover v-slot:default="{ isHovering, props }">
+								<a
+									:href="'/rocket-' + dash(item.rocket.rocket_name)"
+									class="text-decoration-none"
+								>
+									<button
+										class="px-3 py-1 rounded-sm"
+										:class="isHovering ? 'bg-white' : 'bg-grey-darken-2'"
+										v-bind="props"
+									>
+										Info
+									</button>
+								</a>
+							</v-hover>
+						</td>
+						<td class="">
+							{{ item.rocket.rocket_name }}
+						</td>
 						<td class="w-25">{{ item.mission_name }}</td>
 						<td class="">{{ item.launch_date_utc }}</td>
 						<td class="">{{ item.launch_site }}</td>
-						<td class="">{{ item.rocket.rocket_name }}</td>
+
 						<td class="text-wrap">
 							{{ truncate(item.details, 100) }}
 							<span class="text-decoration-underline cursor-pointer">
