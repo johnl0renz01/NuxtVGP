@@ -34,7 +34,6 @@ const { xs, mdAndUp } = useDisplay()
 
 <template>
 	<v-card flat>
-		<button @click="onClick">asdada</button>
 		<v-select
 			class="ma-3"
 			:class="mdAndUp ? 'w-25' : 'w-100'"
@@ -64,8 +63,8 @@ const { xs, mdAndUp } = useDisplay()
 					<tr :class="isHovering ? 'bg-blue' : ''" v-bind="props">
 						<td class="">
 							<v-hover v-slot:default="{ isHovering, props }">
-								<a
-									:href="'/rocket/' + dash(item.rocket.rocket_name)"
+								<NuxtLink
+									:to="'/rocket/' + dash(item.rocket.rocket_name)"
 									class="text-decoration-none"
 								>
 									<button
@@ -75,7 +74,7 @@ const { xs, mdAndUp } = useDisplay()
 									>
 										Info
 									</button>
-								</a>
+								</NuxtLink>
 							</v-hover>
 						</td>
 						<td class="">

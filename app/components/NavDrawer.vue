@@ -18,8 +18,6 @@
 			<NuxtLink to="/favorites" class="text-decoration-none text-white">
 				<v-list-item prepend-icon="mdi-star" title="Favorites" value="favorite"></v-list-item>
 			</NuxtLink>
-			<v-list-item prepend-icon="mdi-account" title="My Account" value="account"></v-list-item>
-			<v-list-item prepend-icon="mdi-account-group-outline" title="Users" value="users"></v-list-item>
 		</v-list>
 
 		<template v-slot:append>

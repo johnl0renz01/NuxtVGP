@@ -1,7 +1,14 @@
 <template>
 	<v-container class="d-grid h-100">
-		<v-row>
-			<v-col cols="12" md="6" v-for="rocket in rockets" :key="rocket.name" class="pa-16" justify="">
+		<v-row v-if="rockets.length > 0">
+			<v-col
+				cols="12"
+				md="6"
+				v-for="(rocket, index) in rockets"
+				:key="rocket.name"
+				class="pa-16"
+				justify=""
+			>
 				<v-card
 					:disabled="loading"
 					:loading="loading"
@@ -64,7 +71,7 @@
 									text="Remove"
 									block
 									border
-									@click="reserve"
+									@click="favorites.remove(index)"
 								></v-btn>
 							</v-card-actions>
 						</v-card-item>
@@ -72,26 +79,31 @@
 				</v-card>
 			</v-col>
 		</v-row>
+		<v-container v-else class="fill-height" fluid>
+			<v-row justify="center" align="center" class="fill-height">
+				<v-col cols="12">
+					<div class="text-center">
+						<p class="h-100vh text-center text-subtitle-2">
+							Your favorite rockets list is currently empty.
+							<br />
+							<br />
+							Start adding your preferred SpaceX rockets to stay updated on their latest
+							missions and developments.
+						</p>
+					</div>
+				</v-col>
+			</v-row>
+		</v-container>
 	</v-container>
 </template>
 
 <script lang="ts">
 export default {
 	mixins: [rocket],
-	data: () => ({
-		loading: false,
-		selection: 1,
-	}),
-
-	methods: {
-		reserve() {
-			this.loading = true
-			setTimeout(() => (this.loading = false), 2000)
-		},
-	},
 }
 </script>
 
 <script lang="ts" setup>
-const rockets = rocket.data().rockets.value
+const favorites = useFavorites()
+const rockets = favorites.favoritesObject
 </script>

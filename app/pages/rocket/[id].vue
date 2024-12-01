@@ -26,11 +26,14 @@ id = id.replace(/_/g, ' ')
 const currentId = ref(id)
 
 const rockets = rocket.data().rockets.value
+var rocketsIndex: number = 0
+
 const currentRocket = useDetails()
 
 for (let i = 0; i < rockets.length; i++) {
-	if (rockets[i]?.name == currentId.value) {
+	if (rockets[i]?.name.toLowerCase() == currentId.value.toLowerCase()) {
 		currentRocket.set(rockets[i])
+		rocketsIndex = i
 		break
 	}
 }
@@ -86,12 +89,19 @@ const favorites = useFavorites()
 
 				<v-btn
 					class="text-none flex-grow-0"
-					color="info"
+					:color="favorites.favorite.includes(route.params.id as string) ? 'background' : 'info'"
+					:disabled="favorites.favorite.includes(route.params.id as string) ? true : false"
 					rounded="0"
 					variant="flat"
-					@click="favorites.add(route.params.id as string)"
+					@click="favorites.add(route.params.id as string, rockets[rocketsIndex])"
 				>
-					<span class="">Favorite</span>
+					<span class="">
+						{{
+							favorites.favorite.includes(route.params.id as string)
+								? 'Added to Favorites'
+								: 'Favorites'
+						}}
+					</span>
 				</v-btn>
 			</v-col>
 		</v-row>
