@@ -2,7 +2,6 @@
 import { useDisplay } from 'vuetify'
 import Card from '~/components/Favorites/Card.vue'
 import Empty from '~/components/Favorites/Empty.vue'
-const { xs, mdAndUp } = useDisplay()
 
 const favorites = useFavorites()
 

@@ -21,9 +21,7 @@ html {
 
 <script setup>
 import { useDisplay } from 'vuetify'
-import Favorites from '~/pages/favorites.vue'
-import Rocketinfo from '~/pages/favorites.vue'
-const { xs, mdAndDown, lgAndUp } = useDisplay()
+const { mdAndDown, lgAndUp } = useDisplay()
 
 const drawer = useDrawer()
 </script>

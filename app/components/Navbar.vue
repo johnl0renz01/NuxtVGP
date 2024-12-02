@@ -1,7 +1,7 @@
 <script setup>
 import { useDisplay } from 'vuetify'
 import Logo from './Navbar/Logo.vue'
-const { xs, mdAndDown } = useDisplay()
+const { mdAndDown } = useDisplay()
 
 const drawer = useDrawer()
 </script>
