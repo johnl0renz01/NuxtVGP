@@ -10,7 +10,7 @@ export default {
 			},
 			{
 				title: 'Details',
-				disabled: false,
+				disabled: true,
 				to: '',
 			},
 		],

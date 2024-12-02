@@ -1,6 +1,4 @@
 <script lang="ts">
-import Details from './Details.vue'
-
 let years: string[] = []
 for (let i = 2024; i >= 2000; i--) {
 	years.push(i.toString())
@@ -19,14 +17,14 @@ export default {
 
 <script lang="ts" setup>
 import { useDisplay } from 'vuetify'
-const { xs, mdAndUp } = useDisplay()
+const { xs, lgAndUp } = useDisplay()
 </script>
 
 <template>
-	<v-card flat>
+	<z>
 		<v-select
 			class="ma-3"
-			:class="mdAndUp ? 'w-25' : 'w-100'"
+			:class="lgAndUp ? 'w-25' : 'w-100%'"
 			clearable
 			label="Filter Launch Year"
 			:items="years"
@@ -41,7 +39,6 @@ const { xs, mdAndUp } = useDisplay()
 			height="61vh"
 			fixed-header
 			fixed-footer
-			v-model="selected"
 			:items-per-page="-1"
 			:loading="loading"
 		>
@@ -79,5 +76,5 @@ const { xs, mdAndUp } = useDisplay()
 				</v-hover>
 			</template>
 		</v-data-table>
-	</v-card>
+	</z>
 </template>

@@ -6,7 +6,7 @@ html {
 
 <template>
 	<v-app>
-		<NavDrawer v-if="lgAndUp" />
+		<NavDrawer v-model="drawer.drawer" :permanent="lgAndUp" :temporary="mdAndDown" />
 		<v-main class="d-flex flex-column">
 			<Navbar class="flex-grow-0" />
 			<slot class="flex-grow-1" />
@@ -19,5 +19,7 @@ html {
 import { useDisplay } from 'vuetify'
 import Favorites from '~/pages/favorites.vue'
 import Rocketinfo from '~/pages/favorites.vue'
-const { xs, mdAndUp, lgAndUp } = useDisplay()
+const { xs, mdAndDown, lgAndUp } = useDisplay()
+
+const drawer = useDrawer()
 </script>

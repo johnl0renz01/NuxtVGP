@@ -1,5 +1,5 @@
 <template>
-	<v-navigation-drawer class="bg-black" location="left" permanent>
+	<v-navigation-drawer class="bg-black" location="left">
 		<template v-slot:prepend>
 			<v-list-item
 				lines="two"
