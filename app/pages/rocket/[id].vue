@@ -40,6 +40,10 @@ for (let i = 0; i < rockets.length; i++) {
 		break
 	}
 }
+
+useSeoMeta({
+	title: `${(route.params.id as string).replace(/_/g, ' ')}`,
+})
 </script>
 
 <template>

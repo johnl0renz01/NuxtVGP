@@ -23,4 +23,24 @@ export default defineNuxtConfig({
 
 	modules: ['@nuxtjs/apollo', ['@pinia/nuxt', { autoImports: ['defineStore', 'acceptHMRUpdate'] }]],
 	compatibilityDate: '2024-11-11',
+
+	app: {
+		head: {
+			title: 'SpaceX',
+			meta: [
+				{
+					name: 'description',
+					content:
+						'SpaceX designs, manufactures and launches advanced rockets and spacecraft. The company was founded in 2002 to revolutionize space technology, with the ultimate goal of enabling people to live on other planets.',
+				},
+			],
+			link: [
+				{
+					rel: 'icon',
+					type: 'image/x-icon',
+					href: 'https://www.spacex.com/static/images/favicon.ico',
+				},
+			],
+		},
+	},
 })

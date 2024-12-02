@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { useDisplay } from 'vuetify'
 import Card from '~/components/Favorites/Card.vue'
 import Empty from '~/components/Favorites/Empty.vue'
 
@@ -7,6 +6,10 @@ const favorites = useFavorites()
 
 const rocket_id = favorites.favorite
 const rockets = favorites.favoritesObject
+
+useSeoMeta({
+	title: 'Favorites',
+})
 </script>
 
 <template>
