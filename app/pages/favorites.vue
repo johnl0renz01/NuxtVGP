@@ -28,7 +28,10 @@ const rockets = favorites.favoritesObject
 					</v-card-item>
 
 					<v-card-actions class="">
-						<NuxtLink :to="'/rocket/' + rocket_id[index]" class="text-decoration-none text-white">
+						<NuxtLink
+							:to="'/rocket/' + rocket_id[index]"
+							class="w-100 text-decoration-none text-white"
+						>
 							<v-btn
 								class="text-caption text-uppercase font-weight-bold"
 								text="Details"

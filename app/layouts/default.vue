@@ -2,6 +2,10 @@
 html {
 	overflow-y: auto;
 }
+
+.v-table__wrapper {
+	overflow-x: hidden;
+}
 </style>
 
 <template>

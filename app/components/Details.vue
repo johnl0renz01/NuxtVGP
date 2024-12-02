@@ -23,17 +23,15 @@ const truncatedDescription = computed(() => {
 </script>
 
 <template>
-	<td class="text-wrap py-2">
-		{{ truncatedDescription }}
-		<span @click="toggleFullDescription" class="text-decoration-underline cursor-pointer text-caption">
-			<br />
-			{{
-				props.details.description != null && props.details.description.length > 100
-					? !showFullDescription
-						? 'More'
-						: 'Less'
-					: ''
-			}}
-		</span>
-	</td>
+	{{ truncatedDescription }}
+	<span @click="toggleFullDescription" class="text-decoration-underline cursor-pointer text-caption">
+		<br />
+		{{
+			props.details.description != null && props.details.description.length > 100
+				? !showFullDescription
+					? 'More'
+					: 'Less'
+				: ''
+		}}
+	</span>
 </template>
