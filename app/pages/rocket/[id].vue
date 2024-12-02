@@ -1,4 +1,6 @@
 <script lang="ts">
+import Details from '~/components/Rocket/Details.vue'
+
 export default {
 	mixins: [rocketData],
 	data: () => ({
@@ -37,8 +39,6 @@ for (let i = 0; i < rockets.length; i++) {
 		break
 	}
 }
-
-const favorites = useFavorites()
 </script>
 
 <template>
@@ -49,63 +49,19 @@ const favorites = useFavorites()
 			</template>
 		</v-breadcrumbs>
 		<v-row class="px-4 py-lg-4">
-			<v-col cols="12" lg="5">
-				<v-img
-					class=""
-					src="https://www.ft.com/__origami/service/image/v2/images/raw/ftcms%3Ae4cd9435-eb63-49dc-a1a7-4013e4f7d0bb?source=next-article&fit=scale-down&quality=highest&width=1440&dpr=1"
-					cover
-				></v-img>
-			</v-col>
-
-			<v-col cols="12" lg="7" class="d-flex flex-column">
-				<div class="flex-grow-1">
-					<h1 class="text-md-h4 font-weight-bold">
-						{{ currentRocket.displayName }}
-					</h1>
-
-					<p class="my-2 text-xs-subtitle-2 text-grey-lighten-1">
-						First Flight: {{ currentRocket.displayFirstFlight }}
-					</p>
-
-					<div class="my-5">
-						<div class="my-2">
-							Height:
-							<v-chip class="mr-2" label>{{ currentRocket.displayHeightF }} ft.</v-chip>
-							<v-chip class="mr-2" label>{{ currentRocket.displayHeightM }} m.</v-chip>
-						</div>
-						<div class="my-2">
-							Mass:
-							<v-chip class="mr-2" label>{{ currentRocket.displayMassK }} kg.</v-chip>
-							<v-chip class="mr-2" label>{{ currentRocket.displayMassL }} lb.</v-chip>
-						</div>
-					</div>
-
-					<p class="pb-10" @click="favorites.display">
-						{{ currentRocket.displayDescription }}
-					</p>
-				</div>
-
-				<v-btn
-					class="text-none flex-grow-0"
-					:color="
-						favorites.favorite.includes(route.params.id as string)
-							? 'background'
-							: 'blue-darken-4'
-					"
-					:disabled="favorites.favorite.includes(route.params.id as string) ? true : false"
-					rounded="0"
-					variant="flat"
-					@click="favorites.add(route.params.id as string, rockets[rocketsIndex])"
-				>
-					<span class="">
-						{{
-							favorites.favorite.includes(route.params.id as string)
-								? 'Added to Favorites'
-								: 'Favorites'
-						}}
-					</span>
-				</v-btn>
-			</v-col>
+			<Details
+				:rocket="{
+					route: route.params.id as string,
+					obj: rockets[rocketsIndex],
+					name: currentRocket.displayName,
+					firstFlight: currentRocket.displayFirstFlight,
+					heightF: currentRocket.displayHeightF,
+					heightM: currentRocket.displayHeightM,
+					massK: currentRocket.displayMassK,
+					massL: currentRocket.displayMassL,
+					description: currentRocket.displayDescription,
+				}"
+			/>
 		</v-row>
 	</main>
 </template>

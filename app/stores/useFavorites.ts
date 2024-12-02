@@ -18,9 +18,5 @@ export const useFavorites = defineStore('favorites', {
 			this.favorite.splice(index, 1)
 			this.favoritesObject.splice(index, 1)
 		},
-
-		display() {
-			console.log(this.favorite)
-		},
 	},
 })

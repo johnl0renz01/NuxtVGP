@@ -1,10 +1,10 @@
-<script setup lang="ts">
-interface Details {
+<script lang="ts" setup>
+interface Information {
 	description: string | null
 }
 
 const props = defineProps<{
-	details: Details
+	details: Information
 }>()
 
 const showFullDescription = ref(false)
