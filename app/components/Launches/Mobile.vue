@@ -38,7 +38,7 @@ const props = defineProps<{
 					</NuxtLink>
 				</v-hover>
 			</div>
-			<div class="text-wrap pr-4" style="min-width: 100px; max-width: 100px">
+			<div class="text-wrap pr-4" style="min-width: 150px; max-width: 150px">
 				{{ launches.rocketName }}
 			</div>
 			<div class="text-wrap pr-4" style="min-width: 200px; max-width: 200px">
@@ -47,7 +47,7 @@ const props = defineProps<{
 			<div class="text-no-wrap" style="min-width: 300px; max-width: 300px">
 				{{ launches.launchDate }}
 			</div>
-			<div style="min-width: 50px; max-width: 50px">{{ launches.launchSite }}</div>
+			<div class="text-wrap" style="min-width: 125px; max-width: 125px">{{ launches.launchSite }}</div>
 			<div class="text-wrap" style="min-width: 300px; max-width: 300px">
 				<Details :details="{ description: launches.launchDetails }" />
 			</div>
@@ -55,7 +55,7 @@ const props = defineProps<{
 	</v-hover>
 </template>
 
-<style>
+<style scoped>
 .mobile-container {
 	-ms-overflow-style: none;
 	scrollbar-width: none;
@@ -65,9 +65,10 @@ const props = defineProps<{
 	display: flex;
 	align-items: center;
 	overflow-x: auto;
+	z-index: 9;
 }
 
 .mobile-container::-webkit-scrollbar {
-	display: none; /* Safari and Chrome */
+	display: none;
 }
 </style>

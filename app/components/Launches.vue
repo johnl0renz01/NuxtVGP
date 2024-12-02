@@ -1,6 +1,7 @@
 <script lang="ts">
 import Desktop from './Launches/Desktop.vue'
 import Mobile from './Launches/Mobile.vue'
+import MobileHeader from './Launches/MobileHeader.vue'
 
 let years: string[] = []
 for (let i = 2024; i >= 2000; i--) {
@@ -34,6 +35,16 @@ const { xs, lgAndUp } = useDisplay()
 			v-model="search"
 		></v-select>
 
+		<MobileHeader
+			v-if="!lgAndUp"
+			:header="{
+				rocketName: 'Rocket Name',
+				missionName: 'Mission Name',
+				launchDate: 'Launch Date',
+				launchSite: 'Launch Site',
+				launchDetails: 'Details',
+			}"
+		/>
 		<v-data-table
 			class="text-no-wrap"
 			:headers="headers"
