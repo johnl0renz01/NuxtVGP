@@ -1,5 +1,6 @@
 <script lang="ts">
 import Details from '~/components/Rocket/Details.vue'
+import Invalid from '~/components/Rocket/Invalid.vue'
 
 export default {
 	mixins: [rocketData],
@@ -42,7 +43,7 @@ for (let i = 0; i < rockets.length; i++) {
 </script>
 
 <template>
-	<main class="pb-16 pa-10 h-100">
+	<main class="pb-16 pa-10 h-100" v-if="currentRocket.displayName">
 		<v-breadcrumbs :items="breadcrumbs" :to="breadcrumbs.to">
 			<template v-slot:divider>
 				<v-icon icon="mdi-chevron-right" class="mb-1"></v-icon>
@@ -64,4 +65,5 @@ for (let i = 0; i < rockets.length; i++) {
 			/>
 		</v-row>
 	</main>
+	<Invalid v-else />
 </template>
