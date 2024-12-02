@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useDisplay } from 'vuetify'
-const { xs, mdAndUp } = useDisplay()
+const { mdAndUp } = useDisplay()
 
 const favorites = useFavorites()
 
