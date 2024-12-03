@@ -3,6 +3,8 @@ import Card from '~/components/Favorites/Card.vue'
 import Empty from '~/components/Favorites/Empty.vue'
 import LoadingSpinner from '~/components/LoadingSpinner.vue'
 
+setActiveLink('favorites')
+
 const favorites = useFavorites()
 
 const rocket_id = favorites.favorite

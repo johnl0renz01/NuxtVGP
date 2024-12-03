@@ -2,6 +2,8 @@
 useSeoMeta({
 	title: 'Launches',
 })
+
+setActiveLink('launches')
 </script>
 
 <template>

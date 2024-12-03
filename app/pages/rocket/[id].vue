@@ -23,6 +23,8 @@ export default {
 </script>
 
 <script lang="ts" setup>
+setActiveLink('launches')
+
 const route = useRoute()
 
 var id: string = route.params.id as string
