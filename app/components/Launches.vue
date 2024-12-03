@@ -10,7 +10,6 @@ for (let i = 2024; i >= 2000; i--) {
 
 export default {
 	mixins: [sortData, rocketData],
-	loading: true,
 	methods: {
 		underscore(value: string) {
 			return value.replace(/\s/g, '_')
@@ -21,7 +20,16 @@ export default {
 
 <script lang="ts" setup>
 import { useDisplay } from 'vuetify'
-const { xs, lgAndUp } = useDisplay()
+const { lgAndUp } = useDisplay()
+
+const loading = ref(true)
+
+watchEffect(async () => {
+	const launchList = sortData.data().launchData.data().launches.value
+	if (launchList.length > 0) {
+		loading.value = false
+	}
+})
 </script>
 
 <template>
@@ -35,16 +43,19 @@ const { xs, lgAndUp } = useDisplay()
 			v-model="search"
 		></v-select>
 
-		<MobileHeader
-			v-if="!lgAndUp"
-			:header="{
-				rocketName: 'Rocket Name',
-				missionName: 'Mission Name',
-				launchDate: 'Launch Date',
-				launchSite: 'Launch Site',
-				launchDetails: 'Details',
-			}"
-		/>
+		<template v-if="!loading">
+			<MobileHeader
+				v-if="!lgAndUp"
+				:header="{
+					rocketName: 'Rocket Name',
+					missionName: 'Mission Name',
+					launchDate: 'Launch Date',
+					launchSite: 'Launch Site',
+					launchDetails: 'Details',
+				}"
+			/>
+		</template>
+
 		<v-data-table
 			class="text-no-wrap"
 			:headers="headers"

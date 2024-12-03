@@ -1,4 +1,5 @@
 <script lang="ts">
+import LoadingSpinner from '~/components/LoadingSpinner.vue'
 import Details from '~/components/Rocket/Details.vue'
 import Invalid from '~/components/Rocket/Invalid.vue'
 
@@ -9,7 +10,7 @@ export default {
 			{
 				title: 'Launches',
 				disabled: false,
-				to: '/',
+				to: '/launches',
 			},
 			{
 				title: 'Details',
@@ -44,30 +45,46 @@ for (let i = 0; i < rockets.length; i++) {
 useSeoMeta({
 	title: `${(route.params.id as string).replace(/_/g, ' ')}`,
 })
+
+const loading = ref(true)
+
+const rocketArray = rocketData.data().rockets.value
+if (rocketArray.length > 0) {
+	loading.value = false
+}
 </script>
 
 <template>
-	<main class="pb-16 pa-10 h-100" v-if="currentRocket.displayName">
-		<v-breadcrumbs :items="breadcrumbs" :to="breadcrumbs.to">
-			<template v-slot:divider>
-				<v-icon icon="mdi-chevron-right" class="mb-1"></v-icon>
-			</template>
-		</v-breadcrumbs>
-		<v-row class="px-4 py-lg-4">
-			<Details
-				:rocket="{
-					route: route.params.id as string,
-					obj: rockets[rocketsIndex],
-					name: currentRocket.displayName,
-					firstFlight: currentRocket.displayFirstFlight,
-					heightF: currentRocket.displayHeightF,
-					heightM: currentRocket.displayHeightM,
-					massK: currentRocket.displayMassK,
-					massL: currentRocket.displayMassL,
-					description: currentRocket.displayDescription,
-				}"
-			/>
+	<template v-if="!loading">
+		<main class="pb-16 pa-10 h-100" v-if="currentRocket.displayName">
+			<v-breadcrumbs :items="breadcrumbs" :to="breadcrumbs.to">
+				<template v-slot:divider>
+					<v-icon icon="mdi-chevron-right" class="mb-1"></v-icon>
+				</template>
+			</v-breadcrumbs>
+			<v-row class="px-4 py-lg-4">
+				<Details
+					:rocket="{
+						route: route.params.id as string,
+						obj: rockets[rocketsIndex],
+						name: currentRocket.displayName,
+						firstFlight: currentRocket.displayFirstFlight,
+						heightF: currentRocket.displayHeightF,
+						heightM: currentRocket.displayHeightM,
+						massK: currentRocket.displayMassK,
+						massL: currentRocket.displayMassL,
+						description: currentRocket.displayDescription,
+					}"
+				/>
+			</v-row>
+		</main>
+		<Invalid v-else />
+	</template>
+	<template v-else>
+		<v-row justify="center" align="center" class="fill-height">
+			<v-col cols="12" class="text-center">
+				<LoadingSpinner />
+			</v-col>
 		</v-row>
-	</main>
-	<Invalid v-else />
+	</template>
 </template>

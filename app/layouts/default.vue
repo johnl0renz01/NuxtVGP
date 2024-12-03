@@ -11,11 +11,11 @@ html {
 <template>
 	<v-app>
 		<NavDrawer v-model="drawer.drawer" :permanent="lgAndUp" :temporary="mdAndDown" />
+		<Navbar class="flex-grow-0" />
 		<v-main class="d-flex flex-column">
-			<Navbar class="flex-grow-0" />
 			<slot class="flex-grow-1" />
-			<Footer class="flex-grow-0" />
 		</v-main>
+		<Footer class="flex-grow-0" />
 	</v-app>
 </template>
 
